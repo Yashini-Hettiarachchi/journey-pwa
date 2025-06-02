@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey of Pride</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <script src="script.js" defer></script>
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(() => {
+            console.log('Service Worker registered');
+        }).catch((error) => {
+            console.error('Service Worker registration failed:', error);
+        });
+    }
+</script>
+<body>
+    <div class="decorative-elements">
+        <div class="cake-decoration glow-orb" data-message="You're a star! Keep shining!"></div>
+        <div class="cake-decoration glow-orb" data-message="Your journey is magical!"></div>
+        <div class="cake-decoration glow-orb" data-message="Embrace your brilliance!"></div>
+        <div class="cake-decoration glow-orb" data-message="You are unstoppable!"></div>
+        <div class="tulip-decoration glow-orb" data-message="Bloom with pride!"></div>
+        <div class="tulip-decoration glow-orb" data-message="Your heart glows!"></div>
+        <div class="tulip-decoration glow-orb" data-message="Radiate positivity!"></div>
+        <div class="tulip-decoration glow-orb" data-message="You're a gift!"></div>
+        <div class="card-decoration glow-orb" data-message="Celebrate you!"></div>
+        <div class="card-decoration glow-orb" data-message="Your story inspires!"></div>
+    </div>
+
+    <div class="container">
+        <div class="doors-container">
+            <div class="door left-door">
+                <div class="door-front">
+                    <div class="door-decoration"></div>
+                    <div class="door-grain"></div>
+                    <div class="door-handle glow-orb" data-message="Open your dreams!"></div>
+                </div>
+            </div>
+            <div class="door right-door">
+                <div class="door-front">
+                    <div class="door-decoration"></div>
+                    <div class="door-grain"></div>
+                    <div class="door-handle glow-orb" data-message="Step into magic!"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="birthday-countdown" id="countdown">
+            <div class="countdown-container">
+                <div class="countdown-item glow-orb" data-message="Every day counts!">
+                    <span id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item glow-orb" data-message="Hours of joy!">
+                    <span id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item glow-orb" data-message="Minutes of magic!">
+                    <span id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item glow-orb" data-message="Seconds of shine!">
+                    <span id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="birthday-message" id="birthday-message" style="display: none;">
+            <h2 class="glow-text">Celebrate Your Journey! 🌟</h2>
+            <p>You’ve reached your Remembering Day! Be proud of your positivity!</p>
+        </div>
+
+        <div class="dedication-message glow-orb" data-message="To your radiant soul!">
+            <div class="to-section">
+                <h3 class="glow-text">To:</h3>
+                <p>My Amazing Self</p>
+            </div>
+            <div class="from-section">
+                <h3 class="glow-text">From:</h3>
+                <p>My Resilient Heart</p>
+            </div>
+        </div>
+
+        <button id="openDoors" class="open-button glow-orb" data-message="Unwrap your surprise!">Open Your Journey Surprise 🎁</button>
+    </div>
+</body>
+</html>
