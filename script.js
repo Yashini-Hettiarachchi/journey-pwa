@@ -65,6 +65,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Password lock functionality
+    const correctPassword = "CodeMyWay";
+    let isUnlocked = false;
+    const passwordModal = document.getElementById('passwordModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const submitPasswordButton = document.getElementById('submitPassword');
+    const errorMessage = document.getElementById('errorMessage');
+
+    function showPasswordModal() {
+        passwordModal.style.display = 'flex';
+        passwordInput.focus();
+    }
+
+    function hidePasswordModal() {
+        passwordModal.style.display = 'none';
+        passwordInput.value = '';
+        errorMessage.style.display = 'none';
+    }
+
+    submitPasswordButton.addEventListener('click', () => {
+        if (passwordInput.value === correctPassword) {
+            isUnlocked = true;
+            hidePasswordModal();
+        } else {
+            errorMessage.style.display = 'block';
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    });
+
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            submitPasswordButton.click();
+        }
+    });
+
     // Door animation logic
     const doorsContainer = document.querySelector('.doors-container');
     if (doorsContainer) {
@@ -75,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         [leftDoor, rightDoor].forEach(door => {
             door.addEventListener('mouseenter', () => {
-                if (!doorsOpened) {
+                if (!doorsOpened && isUnlocked) {
                     door.style.transform = door.classList.contains('left-door') 
                         ? 'rotateY(-15deg) translateZ(20px)' 
                         : 'rotateY(15deg) translateZ(20px)';
@@ -83,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             door.addEventListener('mouseleave', () => {
-                if (!doorsOpened) {
+                if (!doorsOpened && isUnlocked) {
                     door.style.transform = 'rotateY(0deg) translateZ(0)';
                 }
             });
@@ -98,6 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         function openDoorsAndNavigate() {
+            if (!isUnlocked) {
+                showPasswordModal();
+                return;
+            }
             if (doorsOpened) return;
             doorsOpened = true;
 
